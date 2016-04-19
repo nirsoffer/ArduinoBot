@@ -7,7 +7,7 @@
 
 int M1 = 4; 
 int E1 = 5;  
-int E2 = 6;                      
+int E2 = 6;            
 int M2 = 7;
 
 
@@ -68,12 +68,14 @@ int negativeRandom() {
   }
 }
 
-void go() {
+void go(int ms) {
   Serial.println("I'm going! I'm going!");
   digitalWrite(M1, LOW);
   digitalWrite(M2, LOW);
   analogWrite(E1, FULL_THROTTLE);
   analogWrite(E2, FULL_THROTTLE); 
+  delay(ms);
+  stopMotors();
 }
 
 void loop()
@@ -85,14 +87,12 @@ void loop()
     Serial.print("Read: ");
     Serial.println(command);
     switch (command) {
-      case 'g': go(); break;
-      case 'r': turn(10); break;
-      case 'l': turn(-10); break;
+      case 'g': go(100); break;
+      case 'r': turn(100); break;
+      case 'l': turn(-100); break;
       default: break;
     }
   }
-  delay(250); 
-  stopMotors();
 }
 
 
